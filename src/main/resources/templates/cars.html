@@ -1,0 +1,70 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Car Rental - Spring Boot</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  </head>
+  <body>
+    <div th:replace="fragments :: navbar"></div>
+    <div class="container" align="center">
+      <h2>Cars Available</h2>
+      <table class="table table-striped text-center">
+        <tr>
+          <th scope="col">Make</th>
+          <th scope="col">Model</th>
+          <th scope="col">Year</th>
+          <th scope="col">Rental Rate</th>
+          <th scope="col">License Plate</th>
+          <th scope="col" colspan="2">Actions</th>
+        </tr>
+        <tr th:each="car : ${cars}">
+          <td th:text="${car.make}">Make</td>
+          <td th:text="${car.model}">Model</td>
+          <td th:text="${car.year}">Year</td>
+          <td th:text="${car.rentalRate}">Rental Rate</td>
+          <td th:text="${car.licensePlate}">License Plate</td>
+          <td style="display:none;" th:text="${car.id}">Id</td>
+          <td>
+            <a th:text="Edit" th:href="@{|/carsEdit?id=${car.id}|}" class="btn btn-primary"></a>
+          </td>
+          <td>
+            <a th:text="Delete" th:href="@{|/carsDelete?id=${car.id}|}" class="btn btn-danger"></a>
+          </td>
+        </tr>
+      </table>
+      <a th:href="@{|/carsAdd|}" class="btn btn-success">Add New Car</a>
+      <div class="container mt-2" align="center">
+        <form class="d-flex" role="search"
+              onsubmit="this.action = '/carsSearch'">
+          <button class="btn btn-outline-primary m-2" type="submit">Search</button>
+          <input class="form-control m-2" type="search" placeholder="Search car by ID" name="id" id="id">
+        </form>
+      </div>
+      <div class="container mt-2" align="center" th:if="${carSearch != null}">
+        <form class="row g-3" th:object="${carSearch}">
+          <div class="col-md-6">
+            <label class="form-label">Make</label>
+            <input type="text" readonly class="form-control" th:field="*{make}"/>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Model</label>
+            <input type="text" readonly class="form-control" th:field="*{model}"/>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Year</label>
+            <input type="number" readonly class="form-control" th:field="*{year}"/>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Rental Rate</label>
+            <input type="text" readonly class="form-control" th:field="*{rentalRate}"/>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">License Plate</label>
+            <input type="text" readonly class="form-control" th:field="*{licensePlate}"/>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>

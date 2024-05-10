@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Car Rental - Spring Boot</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  </head>
+  <body>
+    <div th:replace="fragments :: navbar"></div>
+    <div class="container" align="center">
+      <h2>Locations Available</h2>
+      <table class="table table-striped text-center">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Address</th>
+          <th scope="col">Latitude</th>
+          <th scope="col">Longitude</th>
+          <th scope="col">City</th>
+          <th scope="col">State</th>
+          <th scope="col">Country</th>
+          <th scope="col">Actions</th>
+        </tr>
+        <tr th:each="location : ${locations}">
+          <td th:text="${location.name}">Make</td>
+          <td th:text="${location.address}">Address</td>
+          <td th:text="${location.latitude}">Latitude</td>
+          <td th:text="${location.longitude}">Longitude</td>
+          <td th:text="${location.city}">City</td>
+          <td th:text="${location.state}">State</td>
+          <td th:text="${location.country}">Country</td>
+          <td style="display:none;" th:text="${location.id}">Id</td>
+          <td>
+            <a th:text="Delete" th:href="@{|/locationsDelete?id=${location.id}|}" class="btn btn-danger"></a>
+          </td>
+        </tr>
+      </table>
+      <a th:href="@{|/locationsAdd|}" class="btn btn-success">Add New Location</a>
+    </div>
+    <script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>

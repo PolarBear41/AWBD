@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Car Rental - Spring Boot</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  </head>
+  <body>
+    <div th:replace="fragments :: navbar"></div>
+    <div class="container" align="center">
+      <h2>Invoices Available</h2>
+      <table class="table table-striped text-center">
+        <tr>
+          <th scope="col">Rental Start Date</th>
+          <th scope="col">Rental End Date</th>
+          <th scope="col">Total Amount</th>
+          <th scope="col">Payment Amount</th>
+        </tr>
+        <tr th:each="invoice : ${invoices}">
+          <td th:text="${invoice.rentalStartDate}">Rental Start Date</td>
+          <td th:text="${invoice.rentalEndDate}">Rental End Date</td>
+          <td th:text="${invoice.totalAmount}">Total Amount</td>
+          <td th:text="${invoice.paymentStatus}">Payment Amount</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="container mt-2" align="center">
+      <form class="d-flex" role="search" onsubmit="this.action = '/invoiceSearch'">
+        <button class="btn btn-outline-primary m-2" type="submit">Search</button>
+        <input class="form-control m-2" type="search" placeholder="Search invoice by User ID" name="id" id="id">
+      </form>
+    </div>
+    <div class="container mt-2" align="center" th:if="${invoiceSearch != null}">
+      <form class="row g-3">
+        <table class="table table-striped text-center">
+          <tr>
+            <th scope="col">Rental Start Date</th>
+            <th scope="col">Rental End Date</th>
+            <th scope="col">Total Amount</th>
+            <th scope="col">Payment Amount</th>
+          </tr>
+          <tr th:each="invoice : ${invoiceSearch}">
+            <td th:text="${invoice.rentalStartDate}">Rental Start Date</td>
+            <td th:text="${invoice.rentalEndDate}">Rental End Date</td>
+            <td th:text="${invoice.totalAmount}">Total Amount</td>
+            <td th:text="${invoice.paymentStatus}">Payment Amount</td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Car Rental - Spring Boot</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  </head>
+  <body>
+    <div th:replace="fragments :: navbar"></div>
+    <div class="container" align="center">
+      <h2>Reservations Available</h2>
+      <table class="table table-striped text-center">
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Status</th>
+          <th scope="col">User ID</th>
+          <th scope="col">Car ID</th>
+        </tr>
+        <tr th:each="reservation : ${reservations}">
+          <td th:text="${reservation.reservationDate}">Date</td>
+          <td th:text="${reservation.reservationStatus}">Status</td>
+          <td th:text="${reservation.userId}">User ID</td>
+          <td th:text="${reservation.carId}">Car ID</td>
+        </tr>
+      </table>
+      <a th:href="@{|/reservationsAdd|}" class="btn btn-success">Add New Reservation</a>
+    </div>
+
+    <div class="container mt-2" align="center">
+      <form class="d-flex" role="search"
+            onsubmit="this.action = '/reservationsSearchByUser'">
+        <button class="btn btn-outline-primary m-2" type="submit">Search</button>
+        <input class="form-control m-2" type="search" placeholder="Search reservations by User ID" name="userId" id="userId">
+      </form>
+    </div>
+    <div class="container mt-2" align="center" th:if="${reservationsSearchByUser != null}">
+      <form class="row g-3">
+        <table class="table table-striped text-center">
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Car ID</th>
+          </tr>
+          <tr th:each="reservation : ${reservationsSearchByUser}">
+            <td th:text="${reservation.reservationDate}">Date</td>
+            <td th:text="${reservation.reservationStatus}">Status</td>
+            <td th:text="${reservation.userId}">User ID</td>
+            <td th:text="${reservation.carId}">Car ID</td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="container mt-2" align="center">
+      <form class="d-flex" role="search"
+            onsubmit="this.action = '/reservationsSearchByCar'">
+        <button class="btn btn-outline-primary m-2" type="submit">Search</button>
+        <input class="form-control m-2" type="search" placeholder="Search reservations by Car ID" name="carId" id="carId">
+      </form>
+    </div>
+    <div class="container mt-2" align="center" th:if="${reservationsSearchByCar != null}">
+      <form class="row g-3">
+        <table class="table table-striped text-center">
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Car ID</th>
+          </tr>
+          <tr th:each="reservation : ${reservationsSearchByCar}">
+            <td th:text="${reservation.reservationDate}">Date</td>
+            <td th:text="${reservation.reservationStatus}">Status</td>
+            <td th:text="${reservation.userId}">User ID</td>
+            <td th:text="${reservation.carId}">Car ID</td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>

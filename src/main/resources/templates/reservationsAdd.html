@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Car Rental - Spring Boot</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div th:replace="fragments :: navbar"></div>
+<div class="container" align="center">
+    <h2>Add New Reservation</h2>
+    <form class="row g-3" th:action="@{/reservations}" th:object="${reservationDto}" method="post">
+        <div class="col-md-6">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" th:field="*{reservationDate}"/>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Status</label>
+            <input type="text" class="form-control" th:field="*{reservationStatus}"/>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">User ID</label>
+            <input type="number" class="form-control" th:field="*{userId}"/>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Car ID</label>
+            <input type="number" class="form-control" th:field="*{carId}"/>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Add Reservation</button>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

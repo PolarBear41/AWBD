@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Car Rental - Spring Boot</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div th:replace="fragments :: navbar"></div>
+<div class="container" align="center">
+    <h2>Add New Location</h2>
+    <form class="row g-3" th:action="@{/locations}" th:object="${locationDto}" method="post">
+        <div class="col-md-6">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" th:field="*{name}"/>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" th:field="*{address}"/>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Latitude</label>
+            <input type="number" class="form-control" th:field="*{latitude}"/>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Longitude</label>
+            <input type="number" class="form-control" th:field="*{longitude}"/>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">City</label>
+            <input type="text" class="form-control" th:field="*{city}"/>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">State</label>
+            <input type="text" class="form-control" th:field="*{state}"/>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Country</label>
+            <input type="text" class="form-control" th:field="*{country}"/>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Add Location</button>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

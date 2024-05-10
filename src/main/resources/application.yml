@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/car_rental
+    username: root
+    password: andrei
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update  #"create" or "update" based on your needs
+    show-sql: true  # SQL queries
+logging:
+  file:
+    name: car_rental.log
+    path: .
+  level.org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+
+
+
+
+
+
+

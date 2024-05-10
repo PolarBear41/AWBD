@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4" th:fragment="navbar">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="cars">Cars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="locations">Locations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="users">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="feedbacks">Feedbacks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="invoices">Invoices</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="reservations">Reservations</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

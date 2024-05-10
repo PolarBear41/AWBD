@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Car Rental - Spring Boot</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  </head>
+  <body>
+    <div th:replace="fragments :: navbar"></div>
+    <div class="container" align="center">
+      <h2>Edit Car</h2>
+      <form class="row g-3" th:action="@{/carsEdit}" th:object="${carDto}" th:method="put">
+        <div class="col-md-6">
+          <label class="form-label">Make</label>
+          <input type="text" class="form-control" th:field="*{make}"/>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Model</label>
+          <input type="text" class="form-control" th:field="*{model}"/>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Year</label>
+          <input type="number" class="form-control" th:field="*{year}"/>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Rental Rate</label>
+          <input type="text" class="form-control" th:field="*{rentalRate}"/>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">License Plate</label>
+          <input type="text" class="form-control" th:field="*{licensePlate}"/>
+          <input type="hidden" th:field="*{id}"/>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Update Car</button>
+        </div>
+      </form>
+    </div>
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>

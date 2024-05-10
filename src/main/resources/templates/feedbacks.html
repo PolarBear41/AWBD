@@ -1,0 +1,90 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Car Rental - Spring Boot</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  </head>
+  <body>
+    <div th:replace="fragments :: navbar"></div>
+    <div class="container" align="center">
+      <h2>Feedback Available</h2>
+      <table class="table table-striped text-center">
+        <tr>
+          <th scope="col">Text</th>
+          <th scope="col">Date</th>
+          <th scope="col">Rating</th>
+          <th scope="col">User ID</th>
+          <th scope="col">Car ID</th>
+          <th scope="col">Actions</th>
+        </tr>
+        <tr th:each="feedback : ${feedbacks}">
+          <td th:text="${feedback.feedbackText}">Text</td>
+          <td th:text="${feedback.feedbackDate}">Date</td>
+          <td th:text="${feedback.rating}">Rating</td>
+          <td th:text="${feedback.userId}">User ID</td>
+          <td th:text="${feedback.carId}">Car ID</td>
+          <td style="display:none;" th:text="${feedback.id}">Id</td>
+          <td>
+            <a th:text="Delete" th:href="@{|/feedbacksDelete?id=${feedback.id}|}" class="btn btn-danger"></a>
+          </td>
+        </tr>
+      </table>
+      <a th:href="@{|/feedbacksAdd|}" class="btn btn-success">Add New Feedback</a>
+    </div>
+    <div class="container mt-2" align="center">
+      <form class="d-flex" role="search"
+            onsubmit="this.action = '/feedbacksSearchByUser'">
+        <button class="btn btn-outline-primary m-2" type="submit">Search</button>
+        <input class="form-control m-2" type="search" placeholder="Search feedback by User ID" name="userId" id="userId">
+      </form>
+    </div>
+    <div class="container mt-2" align="center" th:if="${feedbacksSearchByUser != null}">
+      <form class="row g-3">
+        <table class="table table-striped text-center">
+          <tr>
+            <th scope="col">Text</th>
+            <th scope="col">Date</th>
+            <th scope="col">Rating</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Car ID</th>
+          </tr>
+          <tr th:each="feedback : ${feedbacksSearchByUser}">
+            <td th:text="${feedback.feedbackText}">Text</td>
+            <td th:text="${feedback.feedbackDate}">Date</td>
+            <td th:text="${feedback.rating}">Rating</td>
+            <td th:text="${feedback.userId}">User ID</td>
+            <td th:text="${feedback.carId}">Car ID</td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="container mt-2" align="center">
+      <form class="d-flex" role="search"
+            onsubmit="this.action = '/feedbacksSearchByCar'">
+        <button class="btn btn-outline-primary m-2" type="submit">Search</button>
+        <input class="form-control m-2" type="search" placeholder="Search feedback by Car ID" name="carId" id="carId">
+      </form>
+    </div>
+    <div class="container mt-2" align="center" th:if="${feedbacksSearchByCar != null}">
+      <form class="row g-3">
+        <table class="table table-striped text-center">
+          <tr>
+            <th scope="col">Text</th>
+            <th scope="col">Date</th>
+            <th scope="col">Rating</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Car ID</th>
+          </tr>
+          <tr th:each="feedback : ${feedbacksSearchByCar}">
+            <td th:text="${feedback.feedbackText}">Text</td>
+            <td th:text="${feedback.feedbackDate}">Date</td>
+            <td th:text="${feedback.rating}">Rating</td>
+            <td th:text="${feedback.userId}">User ID</td>
+            <td th:text="${feedback.carId}">Car ID</td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>
